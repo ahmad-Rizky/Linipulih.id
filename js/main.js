@@ -1,0 +1,11 @@
+import { initNavigation } from './navigation.js';
+import { initFaq } from './faq.js';
+import { initConfig, initActions, initAudio, initMotion } from './interactions.js';
+import { initTracking } from './tracking.js';
+initConfig();
+initNavigation();
+initFaq();
+initActions();
+initAudio();
+initMotion();
+initTracking();

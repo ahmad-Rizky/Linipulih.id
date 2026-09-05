@@ -1,0 +1,3 @@
+@font-face{font-family:'DM Sans';src:url('../assets/brand/dm-sans-latin.woff2') format('woff2');font-style:normal;font-weight:100 1000;font-display:swap}
+@font-face{font-family:'Playfair Display';src:url('../assets/brand/playfair-display-latin.woff2') format('woff2');font-style:normal;font-weight:400 900;font-display:swap}
+:root{--white:#f8f5ef;--blue:#dce6ea;--sage:#dce4d6;--apricot:#e9c4ab;--ink:#27313a;--navy:#526476;--sand:#e7ddd0;--gold:#b79a62;--muted:#57626a;--line:#27313a30;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--max:1200px;--radius:6px;--space:clamp(64px,8vw,112px)}

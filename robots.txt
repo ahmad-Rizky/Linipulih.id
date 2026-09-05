@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /lepas/thank-you/
+Disallow: /scripts/
+Sitemap: https://linipulih.id/sitemap.xml
