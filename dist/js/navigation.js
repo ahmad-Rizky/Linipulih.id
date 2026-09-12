@@ -1,4 +1,6 @@
-export function initNavigation() {
+(function (app) {
+'use strict';
+function initNavigation() {
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#main-nav');
   if (!toggle || !nav) return;
@@ -16,3 +18,6 @@ export function initNavigation() {
   document.addEventListener('click', e => { if (!e.target.closest('.site-header')) setOpen(false); });
   matchMedia('(min-width: 801px)').addEventListener('change', () => setOpen(false));
 }
+
+Object.assign(app, { initNavigation });
+})(window.Linipulih);

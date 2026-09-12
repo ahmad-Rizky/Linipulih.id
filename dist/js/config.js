@@ -1,6 +1,7 @@
 // Edit values here, then run python scripts/build.py to refresh static HTML and dist.
 // Empty URLs are intentional: never put private Telegram invite links in this public file.
-export const siteConfig = {
+window.Linipulih = window.Linipulih || {};
+window.Linipulih.siteConfig = {
   "brand": {
     "name": "linipulih.id",
     "supportEmail": "",

@@ -1,15 +1,18 @@
-import { siteConfig } from './config.js';
-import { track } from './tracking.js';
+(function (app) {
+'use strict';
+const { siteConfig, track } = app;
 const money = value => 'Rp' + Number(value).toLocaleString('id-ID');
 const getValue = key => key.split('.').reduce((value, part) => value?.[part], siteConfig);
-export function publicUrl(value, allowLocal = false) {
+function publicUrl(value, allowLocal = false) {
   if (!value) return null;
   try {
-    const url = new URL(value, location.origin);
-    return url.protocol === 'https:' || (allowLocal && url.origin === location.origin && url.protocol === 'http:') ? url.href : null;
+    const base = document.querySelector('[data-site-script]').src;
+    const root = new URL('../', base);
+    const url = new URL(allowLocal && value.startsWith('/') ? value.slice(1) : value, root);
+    return url.protocol === 'https:' || (allowLocal && url.origin === location.origin && ['http:', 'file:'].includes(url.protocol)) ? url.href : null;
   } catch { return null; }
 }
-export function initConfig() {
+function initConfig() {
   document.querySelectorAll('[data-config]').forEach(el => {
     const value = getValue(el.dataset.config);
     if (value != null) el.textContent = value;
@@ -34,7 +37,7 @@ export function initConfig() {
     document.querySelectorAll('[data-support-pending]').forEach(el => { el.hidden = true; });
   }
 }
-export function initActions() {
+function initActions() {
   const dialog = document.querySelector('#action-dialog');
   let trigger;
   function explain(el, title, message) {
@@ -61,7 +64,7 @@ export function initActions() {
     });
   });
 }
-export function initAudio() {
+function initAudio() {
   const button = document.querySelector('[data-audio-toggle]');
   const audio = document.querySelector('#sample-audio');
   if (!button || !audio) return;
@@ -83,7 +86,7 @@ export function initAudio() {
   audio.addEventListener('pause', reset); audio.addEventListener('ended', reset);
   audio.addEventListener('error', () => { status.textContent='Cuplikan gagal dimuat. Coba lagi nanti.'; reset(); });
 }
-export function initMotion() {
+function initMotion() {
   if (!('IntersectionObserver' in window)) return;
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
@@ -103,3 +106,6 @@ export function initMotion() {
   });
   [hero,offer,footer].forEach(el => observer.observe(el));
 }
+
+Object.assign(app, { publicUrl, initConfig, initActions, initAudio, initMotion });
+})(window.Linipulih);

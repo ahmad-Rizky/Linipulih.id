@@ -6,7 +6,7 @@ import html,json,re,shutil
 from urllib.parse import urlparse
 ROOT=Path(__file__).resolve().parents[1]
 config_text=(ROOT/'js/config.js').read_text(encoding='utf-8')
-cfg=json.loads(config_text.split('export const siteConfig =',1)[1].strip().removesuffix(';'))
+cfg=json.loads(config_text.split('window.Linipulih.siteConfig =',1)[1].strip().removesuffix(';'))
 origin=cfg['site']['url'].rstrip('/')
 assert origin.startswith('https://'), 'site.url must use HTTPS'
 for key in ['checkoutUrl','memberAreaUrl']:
